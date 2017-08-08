@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import BatchesContainer from './containers/BatchesContainer'
 import Batches from './seeds/batches'
-import './App.css'
+
 
 class App extends PureComponent {
   render() {
