@@ -11,9 +11,7 @@ class BatchItem extends PureComponent {
         <div>
           <p>{ startDate }</p>
           <p>{ endDate }</p>
-          <ul>
-            { students.map((student) => <li key={student.toString()}>{student}</li>) }
-          </ul>
+          <p>{ students.length } Students</p>
         </div>
       </article>
     )

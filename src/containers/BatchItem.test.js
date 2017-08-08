@@ -27,4 +27,13 @@ import React from 'react'
     expect(container.find('h1')).to.have.text(batch.title)
   })
 
+  it('contains a the start and end dates', () => {
+     expect(container).to.contain(<p>{batch.startDate}</p>)
+     expect(container).to.contain(<p>{batch.endDate}</p>)
+   })
+
+   it('displays the number of students', () => {
+     expect(container).to.contain(<p>{batch.students.length} Students</p>)
+   })
+
 })
