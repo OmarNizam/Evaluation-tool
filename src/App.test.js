@@ -5,7 +5,6 @@ import chai, { expect } from 'chai'
 import chaiEnzyme from 'chai-enzyme'
 import App from './App'
 import BatchesContainer from './containers/BatchesContainer'
-import Title from './components/Title'
 
 chai.use(chaiEnzyme())
 
@@ -20,4 +19,3 @@ describe('<App />', () => {
     expect(app).to.have.descendants(BatchesContainer)
   })
 })
-Contact GitHub API Training Shop Blog About
