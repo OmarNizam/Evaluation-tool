@@ -1,13 +1,15 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
 import BatchesContainer from './containers/BatchesContainer'
-import Batches from './seeds/batches'
-
 
 class App extends PureComponent {
+  updatebatch(id, update) {
+    // We will clean this up later
+  }
   render() {
     return (
       <div className="App">
-        <BatchesContainer batches={ Batches } />
+        <BatchesContainer
+          updatebatch={ this.updatebatch.bind(this) } />
       </div>
     );
   }
