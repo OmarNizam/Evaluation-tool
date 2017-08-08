@@ -1,6 +1,6 @@
 // src/reducers/batches.js
 
-import { FETCHED_BATCHES } from '../actions/batches/fetch.js'
+import { FETCHED_BATCHES } from '../actions/batches/fetch'
 import {
   BATCH_CREATED,
   BATCH_UPDATED,
@@ -11,19 +11,25 @@ export default (state = [], { type, payload } = {}) => {
   switch (type) {
     case FETCHED_BATCHES :
       return [ ...payload ]
+
     case BATCH_CREATED :
+      const newBatch = { ...payload }
       return [newBatch].concat(state)
+
     case BATCH_UPDATED :
       return state.map((batch) => {
-       if (batch._id === payload._id) {
+        if (batch._id === payload._id) {
+          console.log( ...payload)
           return { ...payload }
         }
         return batch
       })
-    case BATCH_REMOVED :
-           return state.filter((batch) => (batch._id !== payload._id))
 
-       default :
-         return state
+    case BATCH_REMOVED :
+        return state.filter((batch) => (batch._id !== payload._id))
+
+    default :
+      return state
+
   }
 }
