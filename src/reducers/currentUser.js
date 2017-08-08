@@ -1,7 +1,7 @@
 // src/reducers/currentUser.js
 
 import { USER_SIGNED_IN } from '../actions/user/sign-in'
-import { USER_SIGNED_OUT } from '../actions/user/sign-out'
+import { USER_SIGNED_OUT } from '../actions/user/sing-out'
 
 const currentUserKey = 'batchesKey'
 const currentUserFromLocalStorage = JSON.parse(
