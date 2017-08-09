@@ -6,6 +6,7 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 import injectTapEventPlugin from 'react-tap-event-plugin'
+import BatchEditor from './containers/BatchEditor'
 import { Router, Route, IndexRoute } from 'react-router'
 import BatchesContainer from './containers/BatchesContainer'
 import SignIn from './components/SignIn'
@@ -17,6 +18,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={BatchesContainer} />
+        <Route path="/create-batch" component={BatchEditor} />
         <Route path="/sign-in" component={SignIn} />
       </Route>
     </Router>
@@ -25,3 +27,6 @@ ReactDOM.render(
 )
 
 registerServiceWorker()
+
+
+// we will use later path="batches/:batchId" component={BatchPage}
