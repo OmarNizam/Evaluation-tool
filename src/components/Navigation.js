@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import signOut from '../actions/user/sing-out'
 import AppBar from 'material-ui/AppBar'
-import IconButton from 'material-ui/IconButton'
-import MemoryIcon from 'material-ui/svg-icons/hardware/memory'
 import FlatButton from 'material-ui/FlatButton'
 
 class Navigation extends PureComponent {
@@ -19,10 +17,12 @@ class Navigation extends PureComponent {
 
   render() {
     const { signedIn } = this.props
+    const styles = { title: { cursor: 'pointer' }}
     return (
       <AppBar
-        title="Evaluations tool"
-        iconElementLeft={<IconButton onClick={this.goHome.bind(this)}><MemoryIcon /></IconButton>}
+        title={<span style={styles.title}>Evaluations Tool</span>}
+        showMenuIconButton={false}
+        onTitleTouchTap={this.goHome.bind(this)}
         iconElementRight={signedIn ?
           <FlatButton label="Sign Out" onClick={this.props.signOut} /> :
           <FlatButton label="Sign In" onClick={this.signIn.bind(this)} />
