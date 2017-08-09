@@ -9,8 +9,8 @@ class BatchItem extends PureComponent {
       <article className="batch">
         <h1>{ title }</h1>
         <div>
-          <p>Start on { newDate(startDate).toDateString() }</p>
-          <p>End on { newDate(endDate).toDateString() }</p>
+          {/* <p>Start on { newDate(startDate).toDateString() }</p>
+          <p>End on { newDate(endDate).toDateString() }</p> */}
           <p>{ students.length } Students</p>
         </div>
       </article>

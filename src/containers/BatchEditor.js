@@ -7,7 +7,7 @@ import { showError } from '../actions/loading'
 import RaisedButton from 'material-ui/RaisedButton'
 import DatePicker from 'material-ui/DatePicker'
 import createBatch from '../actions/batches/create'
-import './BatchEditor.css'
+import './batchEditor.css'
 
 class BatchEditor extends PureComponent {
   constructor(props) {
