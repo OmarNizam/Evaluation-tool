@@ -13,7 +13,7 @@ class BatchEditor extends PureComponent {
   constructor(props) {
     super()
 
-    const {title, startDate, endDate} = this.props
+    const {title, startDate, endDate} = props
     this.state = {
       title,
       startDate,
@@ -86,14 +86,14 @@ class BatchEditor extends PureComponent {
         {errors.title && <p className="error">{errors.title}</p>}
 
         <DatePicker
-          className="startDate"
-          hintText="Start Date"
-          ref="startDate"
-          autoOk={true}
-          value={this.state.startDate}
-          onchange={this.updateStartDate} />
+           hintText="Starting Date"
+           ref="startDate"
+           autoOk={true}
+           className="startDate"
+           value={this.state.startDate}
+           onChange={this.updateStartDate} />
 
-        { errors.startDate && <p className="error">{ errors.startDate }</p> }
+         { errors.startDate && <p className="error">{ errors.startDate }</p> }
 
         <DatePicker
           className="endDate"

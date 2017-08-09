@@ -17,8 +17,7 @@ class CreateBatchButton extends PureComponent {
        <Link to="/create-batch">
          <RaisedButton
           label="Create Batch"
-          secondary={true}
-          fullwidth={true} />
+          secondary={true} />
        </Link>
      </div>
    )
