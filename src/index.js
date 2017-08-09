@@ -32,3 +32,4 @@ registerServiceWorker()
 
 
 // we will use later path="batches/:batchId" component={Batch}
+// we will use later path for component={Student}
