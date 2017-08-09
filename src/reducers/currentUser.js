@@ -3,7 +3,7 @@
 import { USER_SIGNED_IN } from '../actions/user/sign-in'
 import { USER_SIGNED_OUT } from '../actions/user/sing-out'
 
-const currentUserKey = 'batchesKey'
+const currentUserKey = 'batchKey'
 const currentUserFromLocalStorage = JSON.parse(
   window.localStorage.getItem(currentUserKey) || 'null'
 )
