@@ -6,6 +6,8 @@ import BatchItem from './BatchItem'
 import Title from '../components/Title'
 import subscribeToBatches from '../actions/batches/subscribe'
 import fetchBatches from '../actions/batches/fetch'
+import './BatchesContainer.css'
+import CreateBatchButton from './CreateBatchButton'
 
 class BatchesContainer extends PureComponent {
 
@@ -21,15 +23,15 @@ class BatchesContainer extends PureComponent {
 
   render() {
     return(
-      <div className="batches wrapper">
-        <header>
-          <Title content="Batches" />
-        </header>
+      <main className="container">
+        <CreateBatchButton />
 
-        <main>
+
+        <div className="batches">
           { this.props.batches.map(this.renderBatch) }
-        </main>
-      </div>
+        </div>
+      </main>
+
     )
   }
 }

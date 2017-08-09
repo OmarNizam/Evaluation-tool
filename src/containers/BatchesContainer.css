@@ -1,0 +1,4 @@
+.batches {
+  display: flex; }
+  .batches .batch {
+    margin: auto; }
