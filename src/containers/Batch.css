@@ -1,0 +1,11 @@
+.students {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around; }
+  .students .batch {
+    margin: auto;
+    padding: 20px;
+    width: calc(20% - 40px);
+    text-align: center; }
+    .students .batch img {
+      width: 100%; }
