@@ -1,0 +1,7 @@
+.students {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 10px;
+  width: calc(12.5% - 30px);
+  text-align: center;
+  margin: 5px; }

@@ -4,7 +4,10 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import fetchBatches from '../actions/batches/fetch'
-import StudentItem from './Student'
+import getBatch from '../actions/batches/get'
+import subscribeToBatches from '../actions/batches/subscribe'
+import Student from './Student'
+import CreateStudentButton from './CreateStudentButton'
 import Title from '../components/Title'
 import './Batch.css'
 
@@ -18,19 +21,28 @@ export class Batch extends PureComponent {
   }
 
   componentWillMount() {
-    this.props.fetchBatches()
-  }
+    const { batch,
+    fetchBatches,
+    getBatch,
+    subscribed,
+    subscribeToBatches
+  } = this.props
+  const { batchId } = this.props.params
+  if (!batch) fetchBatches()
+  getBatch(batchId)
+  if (!subscribed) subscribeToBatches()
+ }
 
   renderStudent(student, index) {
-    return <StudentItem key={index} { ...student } />
+    return <Student key={index} { ...student } />
   }
 
   render() {
     const {
       _id,
       title,
-      startDate,
-      endDate,
+      //startDate,
+      //endDate,
       students,
     } = this.props
 
@@ -39,6 +51,7 @@ export class Batch extends PureComponent {
       <article className="batch">
         <header>
           <Title content={ title } />
+          <CreateStudentButton />
         </header>
         <main>
           <div className="students">
@@ -62,4 +75,8 @@ const mapStateToProps = ({ batches }, { params }) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchBatches })(Batch)
+export default connect(mapStateToProps, {
+  fetchBatches,
+  subscribeToBatches,
+  getBatch,
+})(Batch)
