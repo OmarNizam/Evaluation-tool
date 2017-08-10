@@ -7,9 +7,11 @@ import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import BatchEditor from './containers/BatchEditor'
+import StudentEditor from './containers/StudentEditor'
 import { Router, Route, IndexRoute } from 'react-router'
 import BatchesContainer from './containers/BatchesContainer'
 import Batch from './containers/Batch'
+import Student from './containers/Student'
 import SignIn from './components/SignIn'
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -20,7 +22,9 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={BatchesContainer} />
         <Route path="/batches/:batchId" component={Batch} />
+        <Route path="/students/:studentId" component={Student} />
         <Route path="/create-batch" component={BatchEditor} />
+        <Route path="/create-student" component={StudentEditor} />
         <Route path="/sign-in" component={SignIn} />
       </Route>
     </Router>
