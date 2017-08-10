@@ -9,6 +9,8 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import Title from '../components/Title'
+import subscribeToBatches from '../actions/batches/subscribe'
+import fetchBatches from '../actions/batches/fetch'
 
 class StudentEditor extends PureComponent {
   constructor(props) {
@@ -46,12 +48,12 @@ class StudentEditor extends PureComponent {
   }
   // errors messages and validations
 
-  validate(batch) {
+  validate(student) {
     const {
       firstName,
       lastName,
       photo
-    } = batch
+    } = student
     let errors = {}
     if (!firstName || firstName === '') errors.firstName = 'Enter student fist name ..'
     if (!lastName || lastName === '') errors.lastName = 'Enter student last name ..'
@@ -63,24 +65,25 @@ class StudentEditor extends PureComponent {
     return Object.keys(errors).lenght === 0
   }
 
-  // save batch function
-  saveBatch(event) {
+  // save student function
+  saveStudent(event) {
     event.preventDefault()
     const {
       firstName,
       lastName,
       photo,
     } = this.state
-    const batch = {
+
+    const student = {
       firstName,
       lastName,
       photo,
       create: true,
     }
 
-    if (this.validate(batch)) {
-      console.log(this.props.currentBatch)
-      this.props.createBatch(this.props.currentBatch, batch)
+    if (this.validate(student)) {
+      console.log(this.props.currentStudent)
+      this.props.createStudent(this.props.currentBatch, student)
       this.props.push(`/batches/${this.props.currentBatch}`)
     }
   }
@@ -114,6 +117,7 @@ class StudentEditor extends PureComponent {
         type="text"
         ref="firstName"
         className="firstName"
+        id="firstName"
         placeholder="First Name"
         defaultValue={this.state.firstName}
         onChange={this.updateFirstName.bind(this)}
@@ -126,6 +130,7 @@ class StudentEditor extends PureComponent {
         type="text"
         ref="lastName"
         className="lastName"
+        id="lastName"
         placeholder="Last Name"
         defaultValue={this.state.lastName}
         onChange={this.updateLastName.bind(this)}
@@ -137,6 +142,7 @@ class StudentEditor extends PureComponent {
         type="text"
           ref="photo"
           className="photo"
+          id="photo"
           placeholder="Enter URL photo"
           defaultValue={this.state.photo}
           onChange={this.updatePhoto.bind(this)}
@@ -154,7 +160,11 @@ class StudentEditor extends PureComponent {
 }
 const mapStateToProps = ({ currentUser, currentBatch }) => ({
   currentBatch,
-  
+
 })
 
-export default connect(mapStateToProps, { push, showError, createStudent })(StudentEditor)
+export default connect(mapStateToProps, {
+  push,
+  showError,
+  createStudent
+})(StudentEditor)
