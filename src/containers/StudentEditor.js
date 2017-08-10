@@ -1,11 +1,14 @@
 // src/containers/StudentEditor.js
 
 import React, { PureComponent } from 'react'
-import RaisedButton from 'material-ui/RaisedButton'
 import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
 import createStudent from '../actions/batches/addStudent'
 import { showError } from '../actions/loading'
+import RaisedButton from 'material-ui/RaisedButton'
+import Paper from 'material-ui/Paper'
+import TextField from 'material-ui/TextField'
+import Title from '../components/Title'
 
 class StudentEditor extends PureComponent {
   constructor(props) {
@@ -22,33 +25,24 @@ class StudentEditor extends PureComponent {
   }
 
   updateFirstName(event) {
-    if (event.keyCode === 13) {
-      event.preventDefault()
-      this.refs.summary.medium.elements[0].focus()
-    }
     this.setState({
-      firstName: this.refs.firstName.value
+      firstName: this.target.value
     })
+    console.log(this.state.firstName)
   }
 
   updateLastName(event) {
-    if (event.keyCode === 13) {
-      event.preventDefault()
-      this.refs.summary.medium.elements[0].focus()
-    }
     this.setState({
-      lastName: this.refs.lastName.value
+      lastName: this.target.value
     })
+    console.log(this.state.lastName)
   }
 
   updatePhoto(event) {
-    if (event.keyCode === 13) {
-      event.preventDefault()
-      this.refs.summary.medium.elements[0].focus()
-    }
     this.setState({
-      photo: this.refs.photo.value
+      photo: this.target.value
     })
+    console.log(this.state.photo)
   }
   // errors messages and validations
 
@@ -70,7 +64,8 @@ class StudentEditor extends PureComponent {
   }
 
   // save student function
-  saveStudent() {
+  saveStudent(event) {
+    event.preventDefault()
     const {
       firstName,
       lastName,
@@ -90,51 +85,66 @@ class StudentEditor extends PureComponent {
     }
   }
 
+  conferm(event) {
+    event.preventDefault()
+    const user = {
+      email: this.refs.email.getValue(),
+      password: this.refs.password.getValue(),
+    }
+      this.props.signIn(user)
+  }
+
   render() {
+    const PaperStyle = {
+      width: '400px',
+      margin: '50px auto',
+      padding: '2em',
+    }
+
     const { errors } = this.state
+
     return (
-      <div className="editor">
-        <input
-          type="text"
-          ref="firstName"
-          className="firstName"
-          placeholder="Enter student first name"
-          defaultValue={this.state.firstName}
-          onChange={this.updateFirstName.bind(this)}
-          onKeyDown={this.updateFirstName.bind(this)} />
+      <Paper style={ PaperStyle }>
 
-        { errors.firstName && <p className="error">{ errors.firstName }</p> }
+      <Title content="Create Student" level={2} />
 
-        <input
-          type="text"
-          ref="lastName"
-          className="lastName"
-          placeholder="Enter student last name"
-          defaultValue={this.state.lastName}
-          onChange={this.updateLastName.bind(this)}
-          onKeyDown={this.updateLastName.bind(this)} />
-
-        { errors.lastName && <p className="error">{ errors.lastName }</p> }
-
-        <input
-          type="text"
+  <form onSubmit={this.saveStudent.bind(this)}>
+    <div className="input">
+      <TextField
+        type="text"
+        ref="firstName"
+        className="firstName"
+        placeholder="First Name"
+        defaultValue={this.state.firstName}
+        onChange={this.updateFirstName.bind(this)}
+        onKeyDown={this.updateFirstName.bind(this)} />
+    </div>
+    <div className="input">
+      <TextField
+        type="text"
+        ref="lastName"
+        className="lastName"
+        placeholder="Last Name"
+        defaultValue={this.state.lastName}
+        onChange={this.updateLastName.bind(this)}
+        onKeyDown={this.updateLastName.bind(this)} />
+    </div>
+    <div className="input">
+      <TextField
+        type="text"
           ref="photo"
           className="photo"
-          placeholder="Enter URL student photo"
+          placeholder="Enter URL photo"
           defaultValue={this.state.photo}
           onChange={this.updatePhoto.bind(this)}
           onKeyDown={this.updatePhoto.bind(this)} />
-
-        { errors.photo && <p className="error">{ errors.photo }</p> }
-
-        <div className="actions">
-          <RaisedButton
-            label="Save"
-            secondary={true}
-            onClick={this.saveStudent.bind(this)} />
-
-        </div>
-      </div>
+    </div>
+        <RaisedButton
+          onClick={this.saveStudent.bind(this)}
+          label="Create "
+          primary={true} />
+      </form>
+    </Paper>
     )
   }
 }
