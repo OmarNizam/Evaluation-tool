@@ -6,18 +6,16 @@ import { connect } from 'react-redux'
 import fetchBatches from '../actions/batches/fetch'
 import getBatch from '../actions/batches/get'
 import subscribeToBatches from '../actions/batches/subscribe'
+import Title from '../components/Title'
+import FlatButton from 'material-ui/FlatButton'
+import TextField from 'material-ui/TextField'
+import './Student.css'
 
 class Student extends PureComponent {
-  static propTypes = {
-    _id: PropTypes.string,
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    photo: PropTypes.string,
-    //evaluations: PropTypes.array,
-  }
 
   componentWillMount() {
-    const { batch,
+    const {
+      batch,
       fetchBatches,
       getBatch,
       subscribed,
@@ -30,31 +28,56 @@ class Student extends PureComponent {
   }
 
   render() {
-    const {
-      _id,
-      firstName,
-      lastName,
-      photo,
-      //evaluations
-    } =this.props
-    if(!_id) return null
     return (
-      <article>
-        <h2>{firstName} {lastName}</h2>
-      </article>
+      <main id="student">
+        <header className="student-header">
+          <div className="photo">
+            <img src="http://media-dmg.assets-cdk.com/teams/repository/export/v/1/553/9ff109bb110058aa60050568bfc31/5539ff109bb110058aa60050568bfc31.png" alt="Student" />
+          </div>
+          <div className="Student-Info">
+            <p>Batch Number 1</p>
+            <p>Evaluation Colors</p>
+          </div>
+        </header>
+        <article className="student-evaluation">
+          <p className="evaluation-history">Evaluations History</p>
+            <div className="evaluation">
+              <FlatButton className="button" backgroundColor="green" />
+              <FlatButton className="button" backgroundColor="yellow" />
+              <FlatButton className="button" backgroundColor="red" />
+            </div>
+            <div className="totch">
+              <div className="input">
+                <TextField
+                  hintText="Enter student summary"
+                  fullWidth={true}/>
+              </div>
+              <div className="submit">
+                <FlatButton label="Save" />
+                <FlatButton label="Save and Next" />
+              </div>
+
+            </div>
+            </article>
+      </main>
     )
   }
 }
-const mapStateToProps = ({currentUser, currentBatch, batches, subscriptions}) => {
-  const batch = batches.filter((p) => (p._id === currentBatch))[0]
+const mapStateToProps = ({ batches }, { params }) => {
+  const batch = batches.reduce((prev, next) => {
+    if (next._id === params.batchId) {
+      return next
+    }
+    return prev
+  }, {})
+
   return {
-    batch,
-    currentUser,
+    ...batch
   }
 }
 
 export default connect(mapStateToProps, {
   fetchBatches,
+  subscribeToBatches,
   getBatch,
-  subscribeToBatches
 })(Student)
