@@ -46,12 +46,12 @@ class StudentEditor extends PureComponent {
   }
   // errors messages and validations
 
-  validate(student) {
+  validate(batch) {
     const {
       firstName,
       lastName,
       photo
-    } = student
+    } = batch
     let errors = {}
     if (!firstName || firstName === '') errors.firstName = 'Enter student fist name ..'
     if (!lastName || lastName === '') errors.lastName = 'Enter student last name ..'
@@ -63,25 +63,25 @@ class StudentEditor extends PureComponent {
     return Object.keys(errors).lenght === 0
   }
 
-  // save student function
-  saveStudent(event) {
+  // save batch function
+  saveBatch(event) {
     event.preventDefault()
     const {
       firstName,
       lastName,
       photo,
     } = this.state
-    const student = {
+    const batch = {
       firstName,
       lastName,
       photo,
       create: true,
     }
 
-    if (this.validate(student)) {
-      console.log(this.props.currentStudent)
-      this.props.createStudent(this.props.currentStudent, student)
-      this.props.push(`/students/${this.props.currentStudent}`)
+    if (this.validate(batch)) {
+      console.log(this.props.currentBatch)
+      this.props.createBatch(this.props.currentBatch, batch)
+      this.props.push(`/batches/${this.props.currentBatch}`)
     }
   }
 
@@ -108,7 +108,7 @@ class StudentEditor extends PureComponent {
 
       <Title content="Create Student" level={2} />
 
-  <form onSubmit={this.saveStudent.bind(this)}>
+  <form onSubmit={this.saveBatch.bind(this)}>
     <div className="input">
       <TextField
         type="text"
@@ -118,6 +118,8 @@ class StudentEditor extends PureComponent {
         defaultValue={this.state.firstName}
         onChange={this.updateFirstName.bind(this)}
         onKeyDown={this.updateFirstName.bind(this)} />
+      { errors.firstName && <p className="error">{ errors.firstName }</p> }
+
     </div>
     <div className="input">
       <TextField
@@ -128,6 +130,7 @@ class StudentEditor extends PureComponent {
         defaultValue={this.state.lastName}
         onChange={this.updateLastName.bind(this)}
         onKeyDown={this.updateLastName.bind(this)} />
+      { errors.lastName && <p className="error">{ errors.lastName }</p> }
     </div>
     <div className="input">
       <TextField
@@ -138,9 +141,10 @@ class StudentEditor extends PureComponent {
           defaultValue={this.state.photo}
           onChange={this.updatePhoto.bind(this)}
           onKeyDown={this.updatePhoto.bind(this)} />
+        { errors.photo && <p className="error">{ errors.photo }</p> }
     </div>
         <RaisedButton
-          onClick={this.saveStudent.bind(this)}
+          onClick={this.saveBatch.bind(this)}
           label="Create "
           primary={true} />
       </form>
@@ -148,8 +152,8 @@ class StudentEditor extends PureComponent {
     )
   }
 }
-const mapStateToProps = ({ currentUser, currentStudent }) => ({
-  currentStudent,
+const mapStateToProps = ({ currentUser, currentBatch }) => ({
+  currentBatch,
   signedIn: !!currentUser && !!currentUser._id,
 })
 
