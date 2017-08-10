@@ -28,11 +28,11 @@ class BatchEditor extends PureComponent {
     }
   }
 
-  componentWillMount() {
-    const {fetchBatches, subscribeToBatches, subscribed} = this.props
-    fetchBatches()
-    if (!subscribed) subscribeToBatches()
-  }
+  // componentWillMount() {
+  //   const {fetchBatches, subscribeToBatches, subscribed} = this.props
+  //   fetchBatches()
+  //   if (!subscribed) subscribeToBatches()
+  // }
   updateTitle(event) {
     if (event.keyCode === 13) {
       event.preventDefault()

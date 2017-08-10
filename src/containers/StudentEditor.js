@@ -111,7 +111,7 @@ class StudentEditor extends PureComponent {
 
       <Title content="Create Student" level={2} />
 
-  <form onSubmit={this.saveBatch.bind(this)}>
+  <form onSubmit={this.saveStudent.bind(this)}>
     <div className="input">
       <TextField
         type="text"
@@ -150,7 +150,7 @@ class StudentEditor extends PureComponent {
         { errors.photo && <p className="error">{ errors.photo }</p> }
     </div>
         <RaisedButton
-          onClick={this.saveBatch.bind(this)}
+          onClick={this.saveStudent.bind(this)}
           label="Create "
           primary={true} />
       </form>
