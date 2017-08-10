@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 import fetchBatches from '../actions/batches/fetch'
 import getBatch from '../actions/batches/get'
 import subscribeToBatches from '../actions/batches/subscribe'
-import Student from './Student'
+import StudentItem from './StudentItem'
+import StudentEditor from './StudentEditor'
 import CreateStudentButton from './CreateStudentButton'
 import Title from '../components/Title'
 import './Batch.css'
@@ -31,10 +32,11 @@ export class Batch extends PureComponent {
   if (!batch) fetchBatches()
   getBatch(batchId)
   if (!subscribed) subscribeToBatches()
+  console.log(this.prps.params)
  }
 
   renderStudent(student, index) {
-    return <Student key={index} { ...student } />
+    return <StudentItem key={index} { ...student } />
   }
 
   render() {
@@ -58,6 +60,7 @@ export class Batch extends PureComponent {
             {students.map(this.renderStudent)}
           </div>
         </main>
+        <StudentEditor />
       </article>
     )
   }

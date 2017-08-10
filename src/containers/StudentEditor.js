@@ -154,7 +154,7 @@ class StudentEditor extends PureComponent {
 }
 const mapStateToProps = ({ currentUser, currentBatch }) => ({
   currentBatch,
-  signedIn: !!currentUser && !!currentUser._id,
+  
 })
 
 export default connect(mapStateToProps, { push, showError, createStudent })(StudentEditor)

@@ -4,6 +4,8 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { showError } from '../actions/loading'
+import subscribeToBatches from '../actions/batches/subscribe'
+import fetchBatches from '../actions/batches/fetch'
 import RaisedButton from 'material-ui/RaisedButton'
 import DatePicker from 'material-ui/DatePicker'
 import createBatch from '../actions/batches/create'
@@ -26,6 +28,11 @@ class BatchEditor extends PureComponent {
     }
   }
 
+  componentWillMount() {
+    const {fetchBatches, subscribeToBatches, subscribed} = this.props
+    fetchBatches()
+    if (!subscribed) subscribeToBatches()
+  }
   updateTitle(event) {
     if (event.keyCode === 13) {
       event.preventDefault()
