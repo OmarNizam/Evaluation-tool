@@ -7,9 +7,9 @@ import fetchBatches from '../actions/batches/fetch'
 import getBatch from '../actions/batches/get'
 import subscribeToBatches from '../actions/batches/subscribe'
 import StudentItem from './StudentItem'
-import StudentEditor from './StudentEditor'
-import CreateStudentButton from './CreateStudentButton'
+import RaisedButton from 'material-ui/RaisedButton'
 import Title from '../components/Title'
+import { Link } from 'react-router'
 import './Batch.css'
 
 export class Batch extends PureComponent {
@@ -48,19 +48,26 @@ export class Batch extends PureComponent {
       students,
     } = this.props
 
+    const { batchId } = this.props.params // to use it in the Link
+
     if (!_id) return null
     return(
       <article className="batch">
         <header>
+          <Link to={'/batches/' + batchId + '/create-student'}>
+            <RaisedButton
+              label="Create Student"
+              secondary={true}
+              fullWidth={true} />
+          </Link>
           <Title content={ title } />
-          <CreateStudentButton />
         </header>
         <main>
           <div className="students">
             {students.map(this.renderStudent)}
           </div>
         </main>
-        <StudentEditor />
+
       </article>
     )
   }

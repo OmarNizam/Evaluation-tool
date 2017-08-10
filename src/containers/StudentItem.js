@@ -28,7 +28,7 @@ class StudentItem extends PureComponent {
           onTouchTap={() => {this.props.RemoveStudent(this.props.currentStudent, {_id, remove: true})}} >
             <DeleteIcon />
           </IconButton>
-        <Link to={`/students/${_id}`}>
+        <Link to={'/batches/' + this.props.currentBatch + '/students/' + _id}>
           <p>{firstName} {lastName}</p>
         </Link>
         <div>

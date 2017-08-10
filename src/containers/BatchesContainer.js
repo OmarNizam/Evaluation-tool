@@ -8,6 +8,8 @@ import subscribeToBatches from '../actions/batches/subscribe'
 import fetchBatches from '../actions/batches/fetch'
 import './BatchesContainer.css'
 import CreateBatchButton from './CreateBatchButton'
+import { Link } from 'react-router'
+import RaisedButton from 'material-ui/RaisedButton'
 
 class BatchesContainer extends PureComponent {
 
@@ -24,14 +26,16 @@ class BatchesContainer extends PureComponent {
   render() {
     return(
       <main className="container">
-        <CreateBatchButton />
-
-
+        <Link to="/create-batch">
+          <RaisedButton
+            label="Create Batch"
+            secondary={true}
+            fullWidth={true} />
+        </Link>
         <div className="batches">
           { this.props.batches.map(this.renderBatch) }
         </div>
       </main>
-
     )
   }
 }
