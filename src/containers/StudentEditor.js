@@ -80,6 +80,7 @@ class StudentEditor extends PureComponent {
       firstName,
       lastName,
       photo,
+      create: true,
     }
 
     if (this.validate(student)) {
