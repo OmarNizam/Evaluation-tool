@@ -9,7 +9,7 @@ import {
 } from '../loading'
 
 export const GOT_BATCH = 'GOT_BATCH'
-export const GOT_STUDENT = 'GOT_STUDENT'
+export const GOT_STUDENTS = 'GOT_STUDENTS'
 
 const api = new API()
 
@@ -31,7 +31,7 @@ export default (batchId) => {
               payload: result
             })
             dispatch({
-              type: GOT_STUDENT,
+              type: GOT_STUDENTS,
               payload: result
             })
           })
