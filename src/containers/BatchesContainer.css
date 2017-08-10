@@ -1,4 +1,7 @@
 .batches {
-  display: flex; }
+  display: flex;
+  flex-flow: row wrap; }
   .batches .batch {
-    margin: auto; }
+    padding: 10px;
+    width: calc(25% - 30px);
+    margin: 15px; }
