@@ -7,6 +7,10 @@ import { showError } from '../actions/loading'
 import RaisedButton from 'material-ui/RaisedButton'
 import DatePicker from 'material-ui/DatePicker'
 import createBatch from '../actions/batches/create'
+import BatchItem from './BatchItem'
+import Paper from 'material-ui/Paper'
+import TextField from 'material-ui/TextField'
+import Title from '../components/Title'
 import './batchEditor.css'
 
 class BatchEditor extends PureComponent {
@@ -29,7 +33,7 @@ class BatchEditor extends PureComponent {
     }
     // we give title state value
     this.setState({
-      title: this.refs.title.value
+      title: event.target.value
     })
   }
   // we give the batch startDate value date
@@ -57,6 +61,10 @@ class BatchEditor extends PureComponent {
     })
     return Object.keys(errors).lenght === 0
   }
+  // render all batch for exact index
+  renderBatch(batch, index) {
+    return <BatchItem key={index} { ...batch } />
+  }
   // save batch function
   saveBatch() {
     const batch = {title, startDate, endDate}
@@ -69,54 +77,73 @@ class BatchEditor extends PureComponent {
   }
 
   render() {
+    const batchStyle = {
+      width: '50%',
+      margin: '20px auto',
+      padding: '2em',
+    }
     const { errors } = this.state
     console.log(this.state.title)
     console.log(this.state.controlledDate)
     return (
-      <div className="editor">
-        <input
-          type="text"
-          ref="title"
-          className="title"
-          placeholder="Title"
-          defaultValue={this.state.title}
-          onChange={this.updateTitle.bind(this)}
-          onKeyDown={this.updateTitle.bind(this)} />
+      <div>
+        <Paper className="editor" style={batchStyle}>
+          <Title content="Create Batch" level={2} />
+          <form onSubmit={this.saveBatch.bind(this)}>
 
-        {errors.title && <p className="error">{errors.title}</p>}
+          <div className="input">
+            <TextField
+              type="text"
+              ref="title"
+              className="field"
+              placeholder="Batch Title"
+              defaultValue={this.state.title}
+              onChange={this.updateTitle.bind(this)}
+              onKeyDown={this.updateTitle.bind(this)} />
 
-        <DatePicker
-           hintText="Starting Date"
-           ref="startDate"
-           autoOk={true}
-           className="startDate"
-           value={this.state.startDate}
-           onChange={this.updateStartDate} />
+              {errors.title && <p className="error">{errors.title}</p>}
 
-         { errors.startDate && <p className="error">{ errors.startDate }</p> }
+          </div>
 
-        <DatePicker
-          className="endDate"
-          hintText="End Date"
-          ref="endDate"
-          autoOk={true}
-          value={this.state.endDate}
-          onChange={this.updateEndDate} />
+          <div className="input">
+            <DatePicker
+             hintText="Starting Date"
+             ref="startDate"
+             autoOk={true}
+             className="startDate"
+             value={this.state.startDate}
+             onChange={this.updateStartDate} />
 
-        { errors.endDate && <p className="error">{ errors.endDate }</p> }
+             { errors.startDate && <p className="error">{ errors.startDate }</p> }
+          </div>
 
-        <div className="actions">
-          <RaisedButton
-            label="Save"
-            secondary={true}
-            onClick={this.saveBatch.bind(this)} />
-        </div>
-      </div>
+          <div className="input">
+            <DatePicker
+              className="endDate"
+              hintText="End Date"
+              ref="endDate"
+              autoOk={true}
+              value={this.state.endDate}
+              onChange={this.updateEndDate} />
+
+              { errors.endDate && <p className="error">{ errors.endDate }</p> }
+          </div>
+
+          <div className="actions">
+            <RaisedButton
+              label="Save"
+              secondary={true}
+              onClick={this.saveBatch.bind(this)} />
+          </div>
+        </form>
+      </Paper>
+    </div>
     )
   }
 }
 
-const mapStateToProps = ({ currentUser }) => ({
+const mapStateToProps = ({ batches, currentUser }) => ({
+  batches,
   signedIn: !!currentUser && !!currentUser._id,
 })
 export default connect(mapStateToProps, {createBatch, push, showError})(BatchEditor)

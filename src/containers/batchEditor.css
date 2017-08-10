@@ -1,41 +1,42 @@
 .medium-editor-element:focus {
   outline: none; }
 
-.editor {
-  width: 400px;
-  border-radius: .1em;
-  background-color: #fff;
-  margin: 1em auto;
-  padding: 1em; }
-  .editor .error {
-    color: red; }
-  .editor .title,
-  .editor .photo {
-    font-size: 1.2em;
-    border: none;
-    margin-bottom: 0.5em; }
-    .editor .title:focus,
-    .editor .photo:focus {
-      outline: none; }
-  .editor .title {
-    font-size: 2em; }
-  .editor .actions {
-    margin-top: 1em; }
-  .editor button {
-    display: inline-block;
-    margin: 0;
-    padding: 0.5rem 1rem;
-    border: 0;
-    border-radius: 0.317rem;
-    background-color: #1fa3ec;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.5;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    cursor: pointer;
-    -webkit-appearance: none;
-    -webkit-font-smoothing: antialiased; }
-    .editor button:hover {
-      opacity: 0.85; }
+.medium-editor-element .field {
+  width: 100%; }
+
+.medium-editor-element .error {
+  color: red; }
+
+.medium-editor-element .title,
+.medium-editor-element .photo {
+  font-size: 1.2em;
+  border: none;
+  margin-bottom: 0.5em; }
+  .medium-editor-element .title:focus,
+  .medium-editor-element .photo:focus {
+    outline: none; }
+
+.medium-editor-element .title {
+  font-size: 2em; }
+
+.medium-editor-element .actions {
+  margin-top: 1em; }
+
+.medium-editor-element button {
+  display: inline-block;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: 0.317rem;
+  background-color: #1fa3ec;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased; }
+  .medium-editor-element button:hover {
+    opacity: 0.85; }
