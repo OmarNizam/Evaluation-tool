@@ -18,7 +18,7 @@ class StudentItem extends PureComponent {
       _id,
     } = this.props
 
-    const backColor = evaluations[0].color // color index 0 will be gray
+    const backColor = evaluations[evaluations.length - 1].color // get the evaluation color using index
     const defaultColor = {
       backgroundColor: backColor,
     }

@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper'
 class BatchItem extends PureComponent {
   render() {
     const { title, students, startDate, endDate, _id } = this.props
-    console.log(_id)
+    
     return (
       <Paper className="batch">
         <Link to={`/batches/${_id}`}>
