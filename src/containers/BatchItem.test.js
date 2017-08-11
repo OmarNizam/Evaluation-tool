@@ -1,39 +1,25 @@
 // src/c/BatchItem.test.js
-
 import React from 'react'
- import chai, { expect } from 'chai'
- import { shallow } from 'enzyme'
- import chaiEnzyme from 'chai-enzyme'
- import BatchItem from './BatchItem'
+import chai, { expect } from 'chai'
+import { shallow } from 'enzyme'
+import chaiEnzyme from 'chai-enzyme'
+import BatchItem from './BatchItem'
+import batch from '../seeds/batch'
 
- chai.use(chaiEnzyme())
+chai.use(chaiEnzyme())
 
- const batch = {
-   _id: '1234',
-   title: 'Batch 1',
-   startDate: "August 7",
-   endDate: "September 7",
-   students: ["Mat", "Tania", "Omar", "Mojgan", "Benmar"],
- }
- describe('<BatchItem />', () => {
-  const container = shallow(<BatchItem { ...batch } />)
-
-  it('is wrapped in a article tag with class name "batch"', () => {
-    expect(container).to.have.tagName('article')
-    expect(container).to.have.className('batch')
-  })
-
-  it('contains a the title', () => {
-    expect(container.find('h1')).to.have.text(batch.title)
-  })
+describe('BatchItem component', () => {
+  const container = shallow(<BatchItem { ...batch } />
+)
 
   it('contains a the start and end dates', () => {
-     expect(container).to.contain(<p>{batch.startDate}</p>)
-     expect(container).to.contain(<p>{batch.endDate}</p>)
-   })
+    expect(container).to.contain('Wed Feb 03 2016')
+    expect(container).to.contain('Sat Feb 20 2016')
+  })
 
-   it('displays the number of students', () => {
-     expect(container).to.contain(<p>{batch.students.length} Students</p>)
-   })
+
+  it('displays the number of students', () => {
+		expect(container).to.contain(<p>3 Students</p>)
+  })
 
 })

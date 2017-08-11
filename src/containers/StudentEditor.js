@@ -31,6 +31,7 @@ class StudentEditor extends PureComponent {
         lastName: this.props.router.location.state.lastName,
         avatar: this.props.router.location.state.avatar,
         _id: this.props.router.location.state._id,
+        evaluations: this.props.router.location.state.evaluations,
         edit: true,
       })
     }
@@ -62,7 +63,7 @@ class StudentEditor extends PureComponent {
     const {
       firstName,
       lastName,
-      photo
+      photo,
     } = student
     let errors = {}
     if (!firstName || firstName === '') errors.firstName = 'Enter student fist name ..'
@@ -82,12 +83,16 @@ class StudentEditor extends PureComponent {
       firstName,
       lastName,
       photo,
+      _id,
+      evaluations,
     } = this.state
 
     const student = {
       firstName,
       lastName,
       photo,
+      _id,
+      evaluations,
       create: true,
     }
 

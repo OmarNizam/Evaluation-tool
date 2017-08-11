@@ -44,7 +44,8 @@ class StudentItem extends PureComponent {
                 firstName: this.props.firstName,
                 lastName: this.props.lastName,
                 avatar: this.props.avatar,
-                _id: this.props._id
+                _id: this.props._id,
+                evaluations: this.props.evaluations,
               }
               }}>
             <IconButton

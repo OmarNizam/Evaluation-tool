@@ -46,6 +46,8 @@ export class Batch extends PureComponent {
    const {students} = this.props
    const {batchId} = this.props.params
 
+   if (this.props.students.length === 0) return null
+
 
   //  // get the students that they have the same color using filter array in away to rech the the correct index for the evaluations
   //  const greenStudents = students.filter((student) => (student.evaluations[student.evaluations.length-1].color === green))
@@ -86,6 +88,11 @@ export class Batch extends PureComponent {
    const randomNum = rando(0, sized_list.length-1)
    const randomGroup = sized_list[randomNum]
    const randomStudent = randomGroup[rando(0, randomGroup.length-1)]
+
+   // this condition for null values
+   if (!randomStudent) return this.randomStudent()
+   console.log(randomStudent)
+
    // we will use the Random NUm as index for the student to find it in the sized_list array
    //const randomStudentId = sized_list[randomNum]._id
    // push the random student path using randomStudentId

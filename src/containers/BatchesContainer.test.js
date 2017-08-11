@@ -1,35 +1,47 @@
 // src/recipes/BatchesContainer.test.js
 import React from 'react'
 import chai, { expect } from 'chai'
+import spies from 'chai-spies'
 import { shallow } from 'enzyme'
 import chaiEnzyme from 'chai-enzyme'
-import BatchesContainer from './BatchesContainer'
-import Title from '../components/Title'
+import { BatchesContainer } from './BatchesContainer'
 import BatchItem from './BatchItem'
 import batches from '../seeds/batches'
 
-
+chai.use(spies)
 chai.use(chaiEnzyme())
 
 describe('<BatchesContainer />', () => {
-  const container = shallow(<BatchesContainer batches={batches} />)
+  const fetchBatches = chai.spy()
+  const subscribeToBatches = chai.spy()
 
-  it('is wrapped in a div with class name "batches"', () => {
-    expect(container).to.have.className('wrapper')
-    expect(container).to.have.className('batches')
+  const container = shallow(
+    <BatchesContainer
+      batches={batches}
+      fetchBatches={fetchBatches}
+      subscribeToBatches={subscribeToBatches} />
+  )
+  it('is wrapped in a div with class name "container"', () => {
+    expect(container).to.have.className('container')
   })
 
-  it('contains a Title', () => {
-    expect(container).to.have.descendants(Title)
-  })
-
-  it('sets the Title to "All Batches"', () => {
-    expect(container).to.contain(<Title content="Batches" />)
-  })
-
-  it('renders all recipes as a BatchItem', () => {
+  it('renders all batches as a BatchItem', () => {
     expect(container).to.have.exactly(4).descendants(BatchItem)
-    // or use recipes.length
     expect(container).to.have.exactly(batches.length).descendants(BatchItem)
+  })
+
+  it('calls fetchRecipes and subscribeToBatches in componentWillMount', () => {
+    fetchBatches.reset()
+    subscribeToBatches.reset()
+
+    shallow(
+      <BatchesContainer
+        batches={batches}
+        fetchBatches={fetchBatches}
+        subscribeToBatches={subscribeToBatches}  />)
+
+    expect(fetchBatches).to.have.been.called.exactly.once()
+    expect(subscribeToBatches).to.have.been.called.exactly.once()
+
   })
 })
