@@ -7,6 +7,7 @@ import currentUser from './currentUser'
 import batches from './batches'
 import currentBatchId from './currentBatch'
 import currentStudents from './currentStudents'
+//import singleStudent from './singleStudents'
 
 export default {
   loading,
@@ -16,6 +17,8 @@ export default {
   currentBatchId,
   subscriptions,
   currentStudents,
+  //singleStudent,
+
 }
 
 
