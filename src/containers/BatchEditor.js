@@ -74,13 +74,16 @@ class BatchEditor extends PureComponent {
   }
   // save batch function
   saveBatch() {
-    const batch = {title, startDate, endDate}
-    const {title, startDate, endDate} = this.state
+    const batch = {
+      title: this.refs.title.getValue(),
+      startDate: this.refs.startDate.state.date,
+      endDate: this.refs.endDate.state.date,
+    }
     // if there is no error this batch props create new batch then go back to root
-    if (this.validate(batch)) {
+
       this.props.createBatch(batch)
       this.props.push('/')
-    }
+
   }
 
   render() {
@@ -104,7 +107,6 @@ class BatchEditor extends PureComponent {
               ref="title"
               className="field"
               placeholder="Batch Title"
-              defaultValue={this.state.title}
               onChange={this.updateTitle.bind(this)}
               onKeyDown={this.updateTitle.bind(this)} />
 
@@ -118,7 +120,6 @@ class BatchEditor extends PureComponent {
              ref="startDate"
              autoOk={true}
              className="startDate"
-             value={this.state.startDate}
              onChange={this.updateStartDate} />
 
              { errors.startDate && <p className="error">{ errors.startDate }</p> }
@@ -130,7 +131,6 @@ class BatchEditor extends PureComponent {
               hintText="End Date"
               ref="endDate"
               autoOk={true}
-              value={this.state.endDate}
               onChange={this.updateEndDate} />
 
               { errors.endDate && <p className="error">{ errors.endDate }</p> }

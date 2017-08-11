@@ -60,7 +60,7 @@ class Student extends PureComponent {
       id: studentId,
       edit: true
     }
-    this.props.editStudent(batchId, student)
+    // this.props.editStudent(batchId, student)
 
     if (value) this.props.push(`/batches/${batchId}`)
     if (!value) {
@@ -204,6 +204,5 @@ export default connect(mapStateToProps, {
   fetchBatches,
   subscribeToBatches,
   getBatch,
-
   push
 })(Student)

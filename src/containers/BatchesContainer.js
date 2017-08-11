@@ -7,7 +7,6 @@ import Title from '../components/Title'
 import subscribeToBatches from '../actions/batches/subscribe'
 import fetchBatches from '../actions/batches/fetch'
 import './BatchesContainer.css'
-import CreateBatchButton from './CreateBatchButton'
 import { Link } from 'react-router'
 import RaisedButton from 'material-ui/RaisedButton'
 
