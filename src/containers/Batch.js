@@ -3,6 +3,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import fetchBatches from '../actions/batches/fetch'
 import getBatch from '../actions/batches/get'
 import subscribeToBatches from '../actions/batches/subscribe'
@@ -34,7 +35,16 @@ export class Batch extends PureComponent {
   if (!subscribed) subscribeToBatches()
 
  }
-
+ randomStudent(event) {
+   const { batchId } = this.props.params
+   const {students} = this.props
+   // do random on students array * by the array length
+   const randomStudent = students[Math.floor(Math.random() * students.length)]
+   // and the id result of the random func give it as index for the next student
+   const randomStudentIndex = randomStudent._id
+   console.log(this.props.currentStudents)
+   // this.props.push(`/batches/${batchId}/students/${randomStudentIndex}`)
+ }
   renderStudent(student, index) {
     return <StudentItem key={index} { ...student } />
   }
@@ -47,7 +57,7 @@ export class Batch extends PureComponent {
       //endDate,
       students,
     } = this.props
-    
+
     const { batchId } = this.props.params // to use it in the Link
 
     if (!_id) return null
@@ -61,6 +71,11 @@ export class Batch extends PureComponent {
               fullWidth={true} />
           </Link>
           <Title content={ title } />
+          <RaisedButton
+            label="Random Student"
+            secondary={true}
+            fullWidth={true}
+            onClick={()=>this.randomStudent()} />
         </header>
         <main>
           <div className="students">
@@ -72,7 +87,7 @@ export class Batch extends PureComponent {
     )
   }
 }
-const mapStateToProps = ({ batches, subscriptions }, {params }) => {
+const mapStateToProps = ({ batches, subscriptions, currentStudents }, {params }) => {
   const batch = batches.reduce((prev, next) => {
     if (next._id === params.batchId) {
       return next
@@ -81,12 +96,16 @@ const mapStateToProps = ({ batches, subscriptions }, {params }) => {
   }, {})
 
   return {
-    ...batch
+    ...batch,
+    batches,
+    currentStudents,
+    subscribed: subscriptions.includes('batches'),
   }
 }
 
 export default connect(mapStateToProps, {
   fetchBatches,
   subscribeToBatches,
+  push,
   getBatch,
 })(Batch)
