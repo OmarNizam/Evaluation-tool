@@ -1,5 +1,7 @@
 #student {
   margin: 20px; }
+  #student .evaluation-form .title {
+    padding: 20px; }
   #student .student-header {
     flex-flow: row wrap;
     display: flex; }
@@ -14,7 +16,8 @@
           #student .student-header .title .photo .Student-Info .evalucation-color {
             width: 36px;
             height: 36px;
-            min-width: 0px !important; }
+            min-width: 0px !important;
+            margin: 0px 2px; }
             #student .student-header .title .photo .Student-Info .evalucation-color button {
               width: 36px !important;
               height: 36px !important; }
