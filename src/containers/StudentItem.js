@@ -2,6 +2,7 @@
 
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import { Link } from 'react-router'
 import IconButton from 'material-ui/IconButton'
 import { showError } from '../actions/loading'
@@ -36,9 +37,27 @@ class StudentItem extends PureComponent {
         <div>
           <img className="photo" src={photo} alt="student" />
         </div>
+        <div>
+          <Link
+            to={{pathname: `/batches/${this.props.currentBatchId}/create-student`,
+              state: {
+                firstName: this.props.firstName,
+                lastName: this.props.lastName,
+                avatar: this.props.avatar,
+                _id: this.props._id
+              }
+              }}>
+            <IconButton
+              iconClassName="material-icons"
+              tooltip="Edit Student">
+              <DeleteIcon />
+            </IconButton>
+          </Link>
+      </div>
+
       </article>
     )
   }
 }
 const mapStateToProps = ({currentBatchId }) => ({ currentBatchId })
-export default connect(mapStateToProps, { RemoveStudent, showError })(StudentItem)
+export default connect(mapStateToProps, { RemoveStudent, showError, push })(StudentItem)

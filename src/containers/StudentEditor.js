@@ -23,26 +23,38 @@ class StudentEditor extends PureComponent {
         errors: {}
     }
   }
+  componentWillMount() {
+    if (this.props.router.location.state) {
+      console.log(this.props.router.location.state)
+      this.setState({
+        firstName: this.props.router.location.state.firstName,
+        lastName: this.props.router.location.state.lastName,
+        avatar: this.props.router.location.state.avatar,
+        _id: this.props.router.location.state._id,
+        edit: true,
+      })
+    }
+  }
 
   updateFirstName(event) {
     this.setState({
-      firstName: this.target.value
+      firstName: event.target.value
     })
 
   }
 
   updateLastName(event) {
     this.setState({
-      lastName: this.target.value
+      lastName: event.target.value
     })
 
   }
 
   updatePhoto(event) {
     this.setState({
-      photo: this.target.value
+      photo: event.target.value
     })
-    
+
   }
   // errors messages and validations
 
