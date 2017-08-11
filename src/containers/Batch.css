@@ -1,10 +1,18 @@
-.students {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around; }
-  .students .batch {
-    padding: 20px;
-    width: calc(20% - 50px);
-    text-align: center;
-    background-color: red;
-    margin: 5px; }
+.title {
+  margin: 20px; }
+  .title .students {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around; }
+    .title .students .batch {
+      padding: 20px;
+      width: calc(20% - 50px);
+      text-align: center;
+      background-color: red;
+      margin: 5px; }
+      .title .students .batch .percentage {
+        margin-left: 20px;
+        display: inline-block; }
+        .title .students .batch .percentage .percentage-students {
+          display: inline-block;
+          padding: 10px; }
