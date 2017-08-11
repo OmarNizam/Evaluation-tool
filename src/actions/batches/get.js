@@ -30,10 +30,10 @@ export default (batchId) => {
               type: GOT_BATCH,
               payload: result
             })
-            dispatch({
-              type: GOT_STUDENTS,
-              payload: result
-            })
+            // dispatch({
+            //   type: GOT_STUDENTS,
+            //   payload: result
+            // })
           })
           .catch((error) => {
             dispatch({ type: APP_DONE_LOADING })

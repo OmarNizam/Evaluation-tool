@@ -72,15 +72,17 @@ export class Batch extends PureComponent {
      return sized_list
    }
    // get all students by coller and put then in array
-   const list = [...greenStudents, ...yellowStudents, ...redStudents]
+   const list = [greenStudents, yellowStudents, redStudents]
    // give the array weight it is mean 17% Green & 33% yellow & 50% Red
    const size = [0.17, 0.33, 0.5]
    // generate the list using generateSizedList
    const sized_list = generateSizedList(list, size)
    // Random the sized_list using the rando func and min=0 , max=sized_list.length-1 as index
    const randomNum = rando(0, sized_list.length-1)
+   const randomGroup = sized_list[randomNum]
+   const randomStudentId = randomGroup[rando(0, randomGroup.length-1)]._id
    // we will use the Random NUm as index for the student to find it in the sized_list array
-   const randomStudentId = sized_list[randomNum]._id
+   //const randomStudentId = sized_list[randomNum]._id
    // push the random student path using randomStudentId
    this.props.push(`/batches/${batchId}/students/${randomStudentId}`)
 
@@ -148,10 +150,11 @@ export class Batch extends PureComponent {
     const greenStudents = finalEvaluation.filter((evaluation) => (evaluation.color === green))
     const yellowStudents = finalEvaluation.filter((evaluation) => (evaluation.color === yellow))
     const redStudents = finalEvaluation.filter((evaluation) => (evaluation.color === red))
-    // get the percentage of each color students
-    const greenPercentage = (greenStudents.length / students.length) * 100
-    const yellowPercentage = (yellowStudents.length / students.length) * 100
-    const redPercentage = (redStudents.length / students.length) * 100
+    // get the percentage of each color students just give me 10 elements from each array
+    const greenPercentage = parseInt((greenStudents.length / students.length) * 100, 10)
+    const yellowPercentage = parseInt((yellowStudents.length / students.length) * 100, 10)
+    const redPercentage = parseInt((redStudents.length / students.length) * 100, 10)
+    //const grayPercentage = parseInt((grayStudents.length / students.length) * 100, 10)
     return(
       <article className="batch">
         <header>
