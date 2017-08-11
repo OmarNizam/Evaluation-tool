@@ -9,8 +9,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import Title from '../components/Title'
-import subscribeToBatches from '../actions/batches/subscribe'
-import fetchBatches from '../actions/batches/fetch'
 
 class StudentEditor extends PureComponent {
   constructor(props) {
@@ -30,21 +28,21 @@ class StudentEditor extends PureComponent {
     this.setState({
       firstName: this.target.value
     })
-    console.log(this.state.firstName)
+
   }
 
   updateLastName(event) {
     this.setState({
       lastName: this.target.value
     })
-    console.log(this.state.lastName)
+
   }
 
   updatePhoto(event) {
     this.setState({
       photo: this.target.value
     })
-    console.log(this.state.photo)
+    
   }
   // errors messages and validations
 
@@ -82,20 +80,15 @@ class StudentEditor extends PureComponent {
     }
 
     if (this.validate(student)) {
-      console.log(this.props.currentStudent)
-      this.props.createStudent(this.props.currentBatch, student)
-      this.props.push(`/batches/${this.props.currentBatch}`)
+      console.log(student)
+      const { batchId } = this.props.params
+      this.props.createStudent(batchId, student)
+      this.props.push(`/batches/${batchId}`)
     }
   }
 
-  conferm(event) {
-    event.preventDefault()
-    const user = {
-      email: this.refs.email.getValue(),
-      password: this.refs.password.getValue(),
-    }
-      this.props.signIn(user)
-  }
+
+
 
   render() {
     const PaperStyle = {
@@ -158,8 +151,9 @@ class StudentEditor extends PureComponent {
     )
   }
 }
-const mapStateToProps = ({ currentUser, currentBatch }) => ({
-  currentBatch,
+const mapStateToProps = ({ currentUser, currentBatchId }) => ({
+  currentBatchId,
+  currentUser,
 
 })
 

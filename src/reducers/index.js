@@ -5,7 +5,7 @@ import loadError from './loadError'
 import subscriptions from './subscriptions'
 import currentUser from './currentUser'
 import batches from './batches'
-import currentBatch from './currentBatch'
+import currentBatchId from './currentBatch'
 import currentStudents from './currentStudents'
 
 export default {
@@ -13,7 +13,7 @@ export default {
   loadError,
   batches,
   currentUser,
-  currentBatch,
+  currentBatchId,
   subscriptions,
   currentStudents,
 }

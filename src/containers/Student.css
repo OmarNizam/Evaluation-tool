@@ -11,22 +11,32 @@
         #student .student-header .title .photo .Student-Info {
           width: calc(80% - 30px);
           margin: 15px; }
+          #student .student-header .title .photo .Student-Info .evalucation-color {
+            width: 36px;
+            height: 36px;
+            min-width: 0px !important; }
+            #student .student-header .title .photo .Student-Info .evalucation-color button {
+              width: 36px !important;
+              height: 36px !important; }
           #student .student-header .title .photo .Student-Info .student-evaluation {
             flex-flow: row wrap;
             display: flex; }
-            #student .student-header .title .photo .Student-Info .student-evaluation .evaluation-history {
-              margin: 15px;
-              width: calc(100% - 30px); }
-              #student .student-header .title .photo .Student-Info .student-evaluation .evaluation-history .evaluation {
-                width: calc(20% - 30px);
-                margin: 15px; }
-                #student .student-header .title .photo .Student-Info .student-evaluation .evaluation-history .evaluation .button {
-                  width: 100%;
-                  max-width: 150px;
-                  margin: auto !important;
-                  display: block !important;
-                  height: 50px !important; }
-                  #student .student-header .title .photo .Student-Info .student-evaluation .evaluation-history .evaluation .button .totch {
-                    width: calc(80% - 30px) !important; }
-                    #student .student-header .title .photo .Student-Info .student-evaluation .evaluation-history .evaluation .button .totch .submit {
-                      float: right; }
+            #student .student-header .title .photo .Student-Info .student-evaluation .evaluation-history p {
+              display: inline-block;
+              width: calc(20%); }
+              #student .student-header .title .photo .Student-Info .student-evaluation .evaluation-history p .date-picker {
+                display: inline-block;
+                width: 150px; }
+            #student .student-header .title .photo .Student-Info .student-evaluation .evaluation-history .evaluation {
+              width: calc(20% - 30px);
+              margin: 15px; }
+              #student .student-header .title .photo .Student-Info .student-evaluation .evaluation-history .evaluation .button {
+                width: 100%;
+                max-width: 150px;
+                margin: auto !important;
+                display: block !important;
+                height: 50px !important; }
+                #student .student-header .title .photo .Student-Info .student-evaluation .evaluation-history .evaluation .button .totch {
+                  width: calc(80% - 30px) !important; }
+                  #student .student-header .title .photo .Student-Info .student-evaluation .evaluation-history .evaluation .button .totch .submit {
+                    float: right; }

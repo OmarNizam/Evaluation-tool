@@ -17,18 +17,20 @@ class StudentItem extends PureComponent {
       photo,
       _id,
     } = this.props
+
+    const backColor = evaluations[0].color // color index 0 will be gray
     const defaultColor = {
-      backgroundColor: 'gray',
+      backgroundColor: backColor,
     }
     return (
       <article className="student" style={defaultColor}>
         <IconButton
           iconClassName="material-icons"
           tooltip="Delete Student"
-          onTouchTap={() => {this.props.RemoveStudent(this.props.currentStudent, {_id, remove: true})}} >
+          onTouchTap={() => {this.props.RemoveStudent(this.props.currentBatchId, {_id, remove: true})}} >
             <DeleteIcon />
           </IconButton>
-        <Link to={'/batches/' + this.props.currentBatch + '/students/' + _id}>
+        <Link to={'/batches/' + this.props.currentBatchId + '/students/' + _id}>
           <p>{firstName} {lastName}</p>
         </Link>
         <div>
@@ -38,5 +40,5 @@ class StudentItem extends PureComponent {
     )
   }
 }
-const mapStateToProps = ({currentStudent }) => ({ currentStudent })
+const mapStateToProps = ({currentBatchId }) => ({ currentBatchId })
 export default connect(mapStateToProps, { RemoveStudent, showError })(StudentItem)
