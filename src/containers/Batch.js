@@ -39,17 +39,22 @@ export class Batch extends PureComponent {
     return <StudentItem key={index} { ...student } />
   }
  randomStudent(event) {
+   const gray = "#808080"
    const green = "#70C67A"
    const yellow = "#FBD40B"
    const red = "#DE5454"
    const {students} = this.props
    const {batchId} = this.props.params
 
-   // get student randomly depending on alo
-   // get the students that they have the same color using filter array in away to rech the the correct index for the evaluations
-   const greenStudents = students.filter((student) => (student.evaluations[student.evaluations.length-1].color === green))
-   const yellowStudents = students.filter((student) => (student.evaluations[student.evaluations.length-1].color === yellow))
-   const redStudents = students.filter((student) => (student.evaluations[student.evaluations.length-1].color === red))
+
+  //  // get the students that they have the same color using filter array in away to rech the the correct index for the evaluations
+  //  const greenStudents = students.filter((student) => (student.evaluations[student.evaluations.length-1].color === green))
+  //  const yellowStudents = students.filter((student) => (student.evaluations[student.evaluations.length-1].color === yellow))
+  //  const redStudents = students.filter((student) => (student.evaluations[student.evaluations.length-1].color === red))
+  // // get student randomly
+    const greenStudents = students.filter((student) => (student.evaluations[student.evaluations.length-1].color === green))
+    const yellowStudents = students.filter((student) => (student.evaluations[student.evaluations.length-1].color === yellow))
+    const redStudents = students.filter((student) => (student.evaluations[student.evaluations.length-1].color === red || student.evaluations[student.evaluations.length-1].color === gray))
 
    // generate random array of 100 element
    const rando = function(min, max) {
@@ -80,12 +85,11 @@ export class Batch extends PureComponent {
    // Random the sized_list using the rando func and min=0 , max=sized_list.length-1 as index
    const randomNum = rando(0, sized_list.length-1)
    const randomGroup = sized_list[randomNum]
-   const randomStudentId = randomGroup[rando(0, randomGroup.length-1)]._id
+   const randomStudent = randomGroup[rando(0, randomGroup.length-1)]
    // we will use the Random NUm as index for the student to find it in the sized_list array
    //const randomStudentId = sized_list[randomNum]._id
    // push the random student path using randomStudentId
-   this.props.push(`/batches/${batchId}/students/${randomStudentId}`)
-
+this.props.push(`/batches/${batchId}/students/${randomStudent._id}`)
  }
   //  const { batchId } = this.props.params
   //  const {students} = this.props
@@ -135,7 +139,7 @@ export class Batch extends PureComponent {
     } = this.props
 
 
-    if (!_id) return null
+    if (!_id || !this.props.params.batchId) return null
 
 
     const green = "#70C67A"
@@ -187,7 +191,7 @@ export class Batch extends PureComponent {
     )
   }
 }
-const mapStateToProps = ({ batches, subscriptions, currentStudents }, {params }) => {
+const mapStateToProps = ({ batches, subscriptions }, {params }) => {
   const batch = batches.reduce((prev, next) => {
     if (next._id === params.batchId) {
       return next
@@ -198,7 +202,6 @@ const mapStateToProps = ({ batches, subscriptions, currentStudents }, {params })
   return {
     ...batch,
     batches,
-    currentStudents,
     subscribed: subscriptions.includes('batches'),
   }
 }
