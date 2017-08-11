@@ -57,9 +57,24 @@ class Evaluation extends PureComponent {
       id: studentId,
       edit: true
     }
-    // this.props.editStudent(batchId, student)
+    this.props.editStudent(batchId, student)
     if (value) this.props.push(`/batches/${batchId}`)
-    if (!value) console.log("next student")
+    if (!value) {
+      const {batch} = this.props
+      const {studentId} = this.props.params
+      // find the current student in exact batch
+      const currentStudentIndex = batch.students.findIndex(p =>(p._id === studentId))
+      // give the next student index value currentStudentIndex+1
+      let nextStudentIndex = currentStudentIndex + 1
+      // display the next student on console
+      console.log(nextStudentIndex)
+      // if the next grater or eq that means the batch students are finished so give the next studentIndex 0
+      if (nextStudentIndex >= batch.students.length) nextStudentIndex = 0
+      // declare the nextStudent using the next student index to get the id
+      const nextStudent = batch.students[nextStudentIndex]._id
+      // then push the next student path
+      this.props.push(`/batches/${batchId}/students/${nextStudent}`)
+    }
   }
 
 
@@ -70,7 +85,7 @@ render() {
   const red= "#DE5454"
 
   return (
-      <Paper>
+      <Paper className="evaluation-form">
         <Title content="Student Evaluation" level={2} />
         <article className="student-evaluation">
             <div className="evaluation">
@@ -129,7 +144,7 @@ render() {
     )
   }
 }
-const mapStateToProps = ({ batches, currentUser }) => ({
+const mapStateToProps = ({ batches, currentUser }, {params}) => ({
   batches,
   signedIn: !!currentUser && !!currentUser._id,
   })
