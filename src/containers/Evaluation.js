@@ -3,7 +3,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import editStudent from '../actions/batches/student'
 import Paper from 'material-ui/Paper'
 import Title from '../components/Title'
 import FlatButton from 'material-ui/FlatButton'
@@ -150,5 +149,5 @@ const mapStateToProps = ({ batches, currentUser }, {params}) => ({
   })
 export default connect(mapStateToProps, {
   push,
-  editStudent,
+
 })(Evaluation)

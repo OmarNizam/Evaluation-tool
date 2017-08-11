@@ -15,7 +15,7 @@ import DatePicker from 'material-ui/DatePicker'
 import TextField from 'material-ui/TextField'
 import Paper from 'material-ui/Paper'
 import { Link } from 'react-router'
-import editStudent from '../actions/batches/student'
+
 class Student extends PureComponent {
   constructor(props) {
     super()
@@ -204,6 +204,6 @@ export default connect(mapStateToProps, {
   fetchBatches,
   subscribeToBatches,
   getBatch,
-  editStudent,
+
   push
 })(Student)
