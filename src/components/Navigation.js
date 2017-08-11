@@ -24,7 +24,7 @@ class Navigation extends PureComponent {
         showMenuIconButton={false}
         onTitleTouchTap={this.goHome.bind(this)}
         iconElementRight={signedIn ?
-          <FlatButton label="Sign Out" onClick={this.props.signOut} /> :
+          <FlatButton label="Sign Out" onClick={this.signOut} /> :
           <FlatButton label="Sign In" onClick={this.signIn.bind(this)} />
         }
       />

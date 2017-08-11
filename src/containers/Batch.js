@@ -32,7 +32,7 @@ export class Batch extends PureComponent {
   if (!batch) fetchBatches()
   getBatch(batchId)
   if (!subscribed) subscribeToBatches()
-  console.log(this.prps.params)
+
  }
 
   renderStudent(student, index) {
@@ -47,7 +47,7 @@ export class Batch extends PureComponent {
       //endDate,
       students,
     } = this.props
-
+    
     const { batchId } = this.props.params // to use it in the Link
 
     if (!_id) return null
@@ -72,7 +72,7 @@ export class Batch extends PureComponent {
     )
   }
 }
-const mapStateToProps = ({ batches }, { params }) => {
+const mapStateToProps = ({ batches, subscriptions }, {params }) => {
   const batch = batches.reduce((prev, next) => {
     if (next._id === params.batchId) {
       return next
