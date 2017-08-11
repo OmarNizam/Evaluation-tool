@@ -79,29 +79,26 @@ class StudentEditor extends PureComponent {
   // save student function
   saveStudent(event) {
     event.preventDefault()
-    const {
-      firstName,
-      lastName,
-      photo,
-      _id,
-      evaluations,
-    } = this.state
-
     const student = {
-      firstName,
-      lastName,
-      photo,
-      _id,
-      evaluations,
-      create: true,
+      firstName: this.refs.firstName.getValue(),
+      lastName: this.refs.lastName.getValue(),
+      photo: this.refs.photo.getValue()
     }
 
-    if (this.validate(student)) {
+    // const student = {
+    //   firstName,
+    //   lastName,
+    //   photo,
+    //   _id,
+    //   evaluations,
+    //   create: true,
+    // }
+
       console.log(student)
       const { batchId } = this.props.params
       this.props.createStudent(batchId, student)
       this.props.push(`/batches/${batchId}`)
-    }
+
   }
 
 
